@@ -1,0 +1,10 @@
+theme:
+  password: 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
+  theme_id: "123208958124"
+  store: paul-baranowski-code-challenge.myshopify.com
+  ignore_files:
+    - settings_data.json
+    - src
+    - node_modules
+    - package.json
+    - package-lock.json
