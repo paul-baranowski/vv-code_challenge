@@ -1,1 +1,63 @@
 // your code here
+
+// colors
+$collection-blue: #00BCD3;
+$collection-red: #EF5350;
+$collection-gold: #FEC109;
+$collection-brown: #AF806E;
+$collection-medium_grey: #CDCDCD;
+$collection-navy: #2F3676;
+$collection-yellow: #FEC109;
+$collection-dark_wash: #2F3676;
+$collection-light_wash: #00BCD3;
+
+
+.collection-grid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.product-image{
+    width: 100%;
+}
+
+.product-card{
+    width: 32%;
+    @media (max-width: 768px) {
+        width: 50%;
+    }
+}
+
+.color-swatch{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    &.collection-blue{
+        background: $collection-blue;
+    }
+    &.collection-red{
+        background: $collection-red;
+    }
+    &.collection-gold{
+        background: $collection-gold;
+    }
+    &.collection-brown{
+        background: $collection-brown;
+    }
+    &.collection-medium-grey{
+        background: $collection-medium_grey;
+    }
+    &.collection-navy-blue{
+        background: $collection-navy;
+    }
+    &.collection-yellow{
+        background: $collection-yellow;
+    }
+    &.collection-dark-wash{
+        background: $collection-dark_wash;
+    }
+    &.collection-light-wash{
+        background: $collection-light_wash;
+    }
+}
