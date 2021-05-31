@@ -27,9 +27,17 @@
                 </p>
                 <ul class="product-color">
                     {% for color_option in product.options_by_name['Color'].values %}
-                        <li class="color-swatch {{ color_option | handleize | prepend: 'collection-'}}"></li>
+                        <li class="color-swatch {{ color_option | handleize | prepend: 'collection-'}} {% if product_option.selected_value == value %}active{% endif %}"}>
+                        </li>
                     {% endfor %}
                 </ul>
+
+
+                <ul>
+                    {% for product_option in product.options_with_values %}
+                      <li>{{ product_option.position }} - {{ product_option.name }} </li>
+                    {% endfor %}
+                  </ul>
           </div>
       {%- endfor -%}
   </div>
