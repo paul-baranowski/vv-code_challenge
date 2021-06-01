@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { useQuery, gql, useLazyQuery } from '@apollo/client';
+import React, { useState, useEffect } from 'react';
+import { gql, useLazyQuery } from '@apollo/client';
 import Select from 'react-select'
 import Product from './product';
 import { COREFIELDS } from '../fragments/fragments';
 
 const STORE_COLLECTION_PRICE = gql`
     ${COREFIELDS}
-    query CollectionQuery {
+    query CollectionQuery($queryorder: Boolean) {
         collectionByHandle(handle: "test-collection") {
             image {
               originalSrc
             }
             title
-            products(first: 250 sortKey: PRICE) {
+            products(first: 250 sortKey: PRICE reverse: $queryorder) {
                 edges {
                     node {
                         ...CoreFields
@@ -25,13 +25,13 @@ const STORE_COLLECTION_PRICE = gql`
 
 const STORE_COLLECTION_CREATED = gql`
     ${COREFIELDS}
-    query CollectionQuery {
+    query CollectionQuery($queryorder: Boolean) {
         collectionByHandle(handle: "test-collection") {
             image {
               originalSrc
             }
             title
-            products(first: 250 sortKey: CREATED) {
+            products(first: 250 sortKey: CREATED reverse: $queryorder) {
                 edges {
                     node {
                         ...CoreFields
@@ -44,13 +44,13 @@ const STORE_COLLECTION_CREATED = gql`
 
 const STORE_COLLECTION__ALPHA = gql`
     ${COREFIELDS}
-    query CollectionQuery {
+    query CollectionQuery($queryorder: Boolean) {
         collectionByHandle(handle: "test-collection") {
             image {
               originalSrc
             }
             title
-            products(first: 250 sortKey: TITLE) {
+            products(first: 250 sortKey: TITLE reverse: $queryorder) {
                 edges {
                     node {
                         ...CoreFields
@@ -64,24 +64,25 @@ const STORE_COLLECTION__ALPHA = gql`
 function App() {
 
     const [query, setQuery] = useState(STORE_COLLECTION_CREATED);
+    const [queryorder, setQueryOrder] = useState(true);
+    const [sortValue, setSortValue] = useState(0);
 
-    const { loading, error, data:shopData, refetch } = useQuery(query, {
-        fetchPolicy: "no-cache"
-      });
+    const [loadStoreData, { loading, data:shopData }] = useLazyQuery(
+        query,
+        { fetchPolicy: "no-cache", variables: { queryorder } }
+    );
 
-    const onChange = selectedOption => {
-        console.log({selectedOption});
-        if(selectedOption.value === "datecreated"){
-            setQuery(STORE_COLLECTION_CREATED);
-        }
-        if(selectedOption.value === "alphaup"){
-            setQuery(STORE_COLLECTION__ALPHA);
-        }
-        if(selectedOption.value === "priceup"){
-            setQuery(STORE_COLLECTION_PRICE);
-        }
-        refetch();
-    };
+    useEffect(() => {        
+        loadStoreData();
+    },[]);
+
+    useEffect(() => {        
+        loadStoreData();
+    },[queryorder]);
+
+    useEffect(() => {        
+        loadStoreData();
+    },[query]);
 
     const options = [
         { value: 'datecreated', label: 'Newest Arrival' },
@@ -91,18 +92,48 @@ function App() {
         { value: 'pricedown', label: 'Price High to Low' }
     ]
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return `Error! ${error.message}`;
+    const onChange = selectedOption => {
+        const indexSelected = options.findIndex(x => x.value === selectedOption.value);
+        setSortValue(indexSelected)
+        if(selectedOption.value === "datecreated"){
+            setQuery(STORE_COLLECTION_CREATED);
+            setQueryOrder(false);
+        }
+        if(selectedOption.value === "alphaup"){
+            setQuery(STORE_COLLECTION__ALPHA);
+            setQueryOrder(false);
+        }
+        if(selectedOption.value === "alphadown"){
+            setQuery(STORE_COLLECTION__ALPHA);
+            setQueryOrder(true);
+        }
+        if(selectedOption.value === "priceup"){
+            setQuery(STORE_COLLECTION_PRICE);
+            setQueryOrder(false);
+        }
+        if(selectedOption.value === "pricedown"){
+            setQuery(STORE_COLLECTION_PRICE);
+            setQueryOrder(true);
+        }
+    };
+
+    if (loading) return (
+        <div className="collection-banner">
+            <h1 className="collection-title">Loading...</h1>
+        </div>
+    );
 
     return (
         <>
+        {shopData &&
+            <>
             <div style={{backgroundImage: `url(${shopData.collectionByHandle.image.originalSrc})`}} className="collection-banner">
                 <h1 className="collection-title">{shopData.collectionByHandle.title}</h1>
             </div>
             <div className="collection-info">
                 <span className="collection-total">{shopData.collectionByHandle.products.edges.length} results</span>
                 <Select
-                    defaultValue={options[1]}
+                    defaultValue={options[sortValue]}
                     onChange={onChange}
                     label="Single select"
                     options={options}
@@ -115,6 +146,8 @@ function App() {
                 ))}
             </div>
         </>
+        }
+     </>
     );
 }
 

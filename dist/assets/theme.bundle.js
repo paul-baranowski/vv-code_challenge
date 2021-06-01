@@ -14355,6 +14355,39 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
 
 /***/ }),
 
+/***/ "./node_modules/core-js/modules/es.array.find-index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.find-index.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
+var $findIndex = __webpack_require__(/*! ../internals/array-iteration */ "./node_modules/core-js/internals/array-iteration.js").findIndex;
+var addToUnscopables = __webpack_require__(/*! ../internals/add-to-unscopables */ "./node_modules/core-js/internals/add-to-unscopables.js");
+
+var FIND_INDEX = 'findIndex';
+var SKIPS_HOLES = true;
+
+// Shouldn't skip holes
+if (FIND_INDEX in []) Array(1)[FIND_INDEX](function () { SKIPS_HOLES = false; });
+
+// `Array.prototype.findIndex` method
+// https://tc39.es/ecma262/#sec-array.prototype.findindex
+$({ target: 'Array', proto: true, forced: SKIPS_HOLES }, {
+  findIndex: function findIndex(callbackfn /* , that = undefined */) {
+    return $findIndex(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+addToUnscopables(FIND_INDEX);
+
+
+/***/ }),
+
 /***/ "./node_modules/core-js/modules/es.array.find.js":
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es.array.find.js ***!
@@ -73889,18 +73922,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.array.from.js */ "./node_modules/core-js/modules/es.array.from.js");
 /* harmony import */ var core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_from_js__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/es.array.map.js */ "./node_modules/core-js/modules/es.array.map.js");
-/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
-/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
-/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _apollo_client__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @apollo/client */ "./node_modules/@apollo/client/index.js");
-/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
-/* harmony import */ var _product__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./product */ "./src/assets/scripts/templates/product.js");
-/* harmony import */ var _fragments_fragments__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../fragments/fragments */ "./src/assets/scripts/fragments/fragments.js");
+/* harmony import */ var core_js_modules_es_array_find_index_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/es.array.find-index.js */ "./node_modules/core-js/modules/es.array.find-index.js");
+/* harmony import */ var core_js_modules_es_array_find_index_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_find_index_js__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! core-js/modules/es.array.map.js */ "./node_modules/core-js/modules/es.array.map.js");
+/* harmony import */ var core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_map_js__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _apollo_client__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @apollo/client */ "./node_modules/@apollo/client/index.js");
+/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
+/* harmony import */ var _product__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./product */ "./src/assets/scripts/templates/product.js");
+/* harmony import */ var _fragments_fragments__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../fragments/fragments */ "./src/assets/scripts/fragments/fragments.js");
 
 
 
@@ -73915,6 +73950,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _templateObject, _templateObject2, _templateObject3;
+
 
 
 
@@ -73939,44 +73975,47 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-var STORE_COLLECTION_PRICE = Object(_apollo_client__WEBPACK_IMPORTED_MODULE_16__["gql"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    ", "\n    query CollectionQuery {\n        collectionByHandle(handle: \"test-collection\") {\n            image {\n              originalSrc\n            }\n            title\n            products(first: 250 sortKey: PRICE) {\n                edges {\n                    node {\n                        ...CoreFields\n                    }\n                }\n            }\n        }\n    }\n"])), _fragments_fragments__WEBPACK_IMPORTED_MODULE_19__["COREFIELDS"]);
-var STORE_COLLECTION_CREATED = Object(_apollo_client__WEBPACK_IMPORTED_MODULE_16__["gql"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    ", "\n    query CollectionQuery {\n        collectionByHandle(handle: \"test-collection\") {\n            image {\n              originalSrc\n            }\n            title\n            products(first: 250 sortKey: CREATED) {\n                edges {\n                    node {\n                        ...CoreFields\n                    }\n                }\n            }\n        }\n    }\n"])), _fragments_fragments__WEBPACK_IMPORTED_MODULE_19__["COREFIELDS"]);
-var STORE_COLLECTION__ALPHA = Object(_apollo_client__WEBPACK_IMPORTED_MODULE_16__["gql"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    ", "\n    query CollectionQuery {\n        collectionByHandle(handle: \"test-collection\") {\n            image {\n              originalSrc\n            }\n            title\n            products(first: 250 sortKey: TITLE) {\n                edges {\n                    node {\n                        ...CoreFields\n                    }\n                }\n            }\n        }\n    }\n"])), _fragments_fragments__WEBPACK_IMPORTED_MODULE_19__["COREFIELDS"]);
+var STORE_COLLECTION_PRICE = Object(_apollo_client__WEBPACK_IMPORTED_MODULE_17__["gql"])(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    ", "\n    query CollectionQuery($queryorder: Boolean) {\n        collectionByHandle(handle: \"test-collection\") {\n            image {\n              originalSrc\n            }\n            title\n            products(first: 250 sortKey: PRICE reverse: $queryorder) {\n                edges {\n                    node {\n                        ...CoreFields\n                    }\n                }\n            }\n        }\n    }\n"])), _fragments_fragments__WEBPACK_IMPORTED_MODULE_20__["COREFIELDS"]);
+var STORE_COLLECTION_CREATED = Object(_apollo_client__WEBPACK_IMPORTED_MODULE_17__["gql"])(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    ", "\n    query CollectionQuery($queryorder: Boolean) {\n        collectionByHandle(handle: \"test-collection\") {\n            image {\n              originalSrc\n            }\n            title\n            products(first: 250 sortKey: CREATED reverse: $queryorder) {\n                edges {\n                    node {\n                        ...CoreFields\n                    }\n                }\n            }\n        }\n    }\n"])), _fragments_fragments__WEBPACK_IMPORTED_MODULE_20__["COREFIELDS"]);
+var STORE_COLLECTION__ALPHA = Object(_apollo_client__WEBPACK_IMPORTED_MODULE_17__["gql"])(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    ", "\n    query CollectionQuery($queryorder: Boolean) {\n        collectionByHandle(handle: \"test-collection\") {\n            image {\n              originalSrc\n            }\n            title\n            products(first: 250 sortKey: TITLE reverse: $queryorder) {\n                edges {\n                    node {\n                        ...CoreFields\n                    }\n                }\n            }\n        }\n    }\n"])), _fragments_fragments__WEBPACK_IMPORTED_MODULE_20__["COREFIELDS"]);
 
 function App() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_15__["useState"])(STORE_COLLECTION_CREATED),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_16__["useState"])(STORE_COLLECTION_CREATED),
       _useState2 = _slicedToArray(_useState, 2),
       query = _useState2[0],
       setQuery = _useState2[1];
 
-  var _useQuery = Object(_apollo_client__WEBPACK_IMPORTED_MODULE_16__["useQuery"])(query, {
-    fetchPolicy: "no-cache"
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_16__["useState"])(true),
+      _useState4 = _slicedToArray(_useState3, 2),
+      queryorder = _useState4[0],
+      setQueryOrder = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_16__["useState"])(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      sortValue = _useState6[0],
+      setSortValue = _useState6[1];
+
+  var _useLazyQuery = Object(_apollo_client__WEBPACK_IMPORTED_MODULE_17__["useLazyQuery"])(query, {
+    fetchPolicy: "no-cache",
+    variables: {
+      queryorder: queryorder
+    }
   }),
-      loading = _useQuery.loading,
-      error = _useQuery.error,
-      shopData = _useQuery.data,
-      refetch = _useQuery.refetch;
+      _useLazyQuery2 = _slicedToArray(_useLazyQuery, 2),
+      loadStoreData = _useLazyQuery2[0],
+      _useLazyQuery2$ = _useLazyQuery2[1],
+      loading = _useLazyQuery2$.loading,
+      shopData = _useLazyQuery2$.data;
 
-  var onChange = function onChange(selectedOption) {
-    console.log({
-      selectedOption: selectedOption
-    });
-
-    if (selectedOption.value === "datecreated") {
-      setQuery(STORE_COLLECTION_CREATED);
-    }
-
-    if (selectedOption.value === "alphaup") {
-      setQuery(STORE_COLLECTION__ALPHA);
-    }
-
-    if (selectedOption.value === "priceup") {
-      setQuery(STORE_COLLECTION_PRICE);
-    }
-
-    refetch();
-  };
-
+  Object(react__WEBPACK_IMPORTED_MODULE_16__["useEffect"])(function () {
+    loadStoreData();
+  }, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_16__["useEffect"])(function () {
+    loadStoreData();
+  }, [queryorder]);
+  Object(react__WEBPACK_IMPORTED_MODULE_16__["useEffect"])(function () {
+    loadStoreData();
+  }, [query]);
   var options = [{
     value: 'datecreated',
     label: 'Newest Arrival'
@@ -73993,29 +74032,65 @@ function App() {
     value: 'pricedown',
     label: 'Price High to Low'
   }];
-  if (loading) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_15___default.a.createElement("p", null, "Loading...");
-  if (error) return "Error! ".concat(error.message);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_15___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_15___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_15___default.a.createElement("div", {
+
+  var onChange = function onChange(selectedOption) {
+    var indexSelected = options.findIndex(function (x) {
+      return x.value === selectedOption.value;
+    });
+    setSortValue(indexSelected);
+
+    if (selectedOption.value === "datecreated") {
+      setQuery(STORE_COLLECTION_CREATED);
+      setQueryOrder(false);
+    }
+
+    if (selectedOption.value === "alphaup") {
+      setQuery(STORE_COLLECTION__ALPHA);
+      setQueryOrder(false);
+    }
+
+    if (selectedOption.value === "alphadown") {
+      setQuery(STORE_COLLECTION__ALPHA);
+      setQueryOrder(true);
+    }
+
+    if (selectedOption.value === "priceup") {
+      setQuery(STORE_COLLECTION_PRICE);
+      setQueryOrder(false);
+    }
+
+    if (selectedOption.value === "pricedown") {
+      setQuery(STORE_COLLECTION_PRICE);
+      setQueryOrder(true);
+    }
+  };
+
+  if (loading) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement("div", {
+    className: "collection-banner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement("h1", {
+    className: "collection-title"
+  }, "Loading..."));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_16___default.a.Fragment, null, shopData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_16___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement("div", {
     style: {
       backgroundImage: "url(".concat(shopData.collectionByHandle.image.originalSrc, ")")
     },
     className: "collection-banner"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_15___default.a.createElement("h1", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement("h1", {
     className: "collection-title"
-  }, shopData.collectionByHandle.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_15___default.a.createElement("div", {
+  }, shopData.collectionByHandle.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement("div", {
     className: "collection-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_15___default.a.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement("span", {
     className: "collection-total"
-  }, shopData.collectionByHandle.products.edges.length, " results"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_15___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_17__["default"], {
-    defaultValue: options[1],
+  }, shopData.collectionByHandle.products.edges.length, " results"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(react_select__WEBPACK_IMPORTED_MODULE_18__["default"], {
+    defaultValue: options[sortValue],
     onChange: onChange,
     label: "Single select",
     options: options,
     className: "dropdown"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_15___default.a.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement("div", {
     className: "collection-grid"
   }, shopData.collectionByHandle.products.edges.map(function (product, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_15___default.a.createElement(_product__WEBPACK_IMPORTED_MODULE_18__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_16___default.a.createElement(_product__WEBPACK_IMPORTED_MODULE_19__["default"], {
       key: index,
       price: product.node.availableForSale ? product.node.priceRange : 'Out of stock',
       variants: product.node.variants.edges,
@@ -74024,7 +74099,7 @@ function App() {
         return e.name === 'Color';
       })
     });
-  })));
+  }))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
